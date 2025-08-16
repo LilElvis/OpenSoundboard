@@ -1,11 +1,11 @@
-project "WalnutApp"
+project "OpenSoundboard"
    kind "ConsoleApp"
    language "C++"
    cppdialect "C++17"
    targetdir "bin/%{cfg.buildcfg}"
    staticruntime "off"
 
-   files { "src/**.h", "src/**.cpp" }
+   files { "src/**.h", "src/**.hpp", "src/**.cpp" }
 
    includedirs
    {
@@ -16,15 +16,29 @@ project "WalnutApp"
 
       "%{IncludeDir.VulkanSDK}",
       "%{IncludeDir.glm}",
+
+      "../vendor/FMOD",
+      "../vendor/JSON"
    }
 
     links
     {
-        "Walnut"
+        "Walnut",
+        "fmod_vc",
+    }
+
+    libdirs {
+       "%{prj.location}/lib"
     }
 
    targetdir ("../bin/" .. outputdir .. "/%{prj.name}")
    objdir ("../bin-int/" .. outputdir .. "/%{prj.name}")
+
+   postbuildcommands {
+      "{COPY} \"%{prj.location}/lib/fmod.dll\" \"%{cfg.targetdir}\"",
+      "{COPY} \"%{prj.location}/fonts/fontaudio.ttf\" \"%{cfg.targetdir}/fonts/\"",
+      "{COPY} \"%{prj.location}/resources/FPOSplashScreen.png\" \"%{cfg.targetdir}/resources/\""
+   }
 
    filter "system:windows"
       systemversion "latest"

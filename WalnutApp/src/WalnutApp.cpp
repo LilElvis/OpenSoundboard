@@ -1,20 +1,7 @@
+#include "MainLayer.hpp"
 #include "Walnut/Application.h"
 #include "Walnut/EntryPoint.h"
-
 #include "Walnut/Image.h"
-
-class ExampleLayer : public Walnut::Layer
-{
-public:
-	virtual void OnUIRender() override
-	{
-		ImGui::Begin("Hello");
-		ImGui::Button("Button");
-		ImGui::End();
-
-		ImGui::ShowDemoWindow();
-	}
-};
 
 Walnut::Application* Walnut::CreateApplication(int argc, char** argv)
 {
@@ -22,17 +9,17 @@ Walnut::Application* Walnut::CreateApplication(int argc, char** argv)
 	spec.Name = "Walnut Example";
 
 	Walnut::Application* app = new Walnut::Application(spec);
-	app->PushLayer<ExampleLayer>();
+	app->PushLayer<osb::MainLayer>();
 	app->SetMenubarCallback([app]()
-	{
-		if (ImGui::BeginMenu("File"))
 		{
-			if (ImGui::MenuItem("Exit"))
+			if (ImGui::BeginMenu("File"))
 			{
-				app->Close();
+				if (ImGui::MenuItem("Exit"))
+				{
+					app->Close();
+				}
+				ImGui::EndMenu();
 			}
-			ImGui::EndMenu();
-		}
-	});
+		});
 	return app;
 }
