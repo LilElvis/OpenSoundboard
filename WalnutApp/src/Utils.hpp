@@ -1,5 +1,7 @@
-namespace osb {
-	namespace Utils {
+namespace osb
+{
+	namespace Utils
+	{
 		void AddAudioIcons(char* path);
 	}
 }

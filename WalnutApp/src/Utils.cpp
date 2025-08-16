@@ -4,8 +4,10 @@
 #include "Utils.hpp"
 #include "Walnut/Application.h"
 
-namespace osb {
-	namespace Utils {
+namespace osb
+{
+	namespace Utils
+	{
 		void AddAudioIcons(char* path)
 		{ // Modified from the solution provided on the GitHub issue I opened three years ago: https://github.com/StudioCherno/Walnut/issues/14
 			ImGuiIO& io = ImGui::GetIO();

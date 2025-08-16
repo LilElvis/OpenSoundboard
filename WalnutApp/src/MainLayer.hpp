@@ -1,6 +1,7 @@
 #include "Walnut/Layer.h"
 
-namespace osb {
+namespace osb
+{
 	class MainLayer : public Walnut::Layer
 	{
 	public:
@@ -12,6 +13,7 @@ namespace osb {
 
 		virtual void OnUIRender() override;
 
+		// Displays all the audio icons to ensure they're rendering correctly.
 		void ShowUnicodeFontDemo();
 	};
 }

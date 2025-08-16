@@ -4,8 +4,8 @@
 #include <filesystem>
 #include <imgui.h>
 
-namespace osb {
-
+namespace osb
+{
 	MainLayer::MainLayer()
 	{
 
@@ -18,6 +18,7 @@ namespace osb {
 
 	void MainLayer::OnAttach()
 	{
+		// Import the assorted audio icons to be used throughout the GUI...
 		std::filesystem::path p = "fonts\\fontaudio.ttf";
 		std::filesystem::path absolute_path = std::filesystem::absolute(p);
 		Utils::AddAudioIcons(absolute_path.string().data());
