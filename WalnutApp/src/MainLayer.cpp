@@ -1,6 +1,7 @@
 #include "IconsFontaudio.h"
 #include "MainLayer.hpp"
 #include "Utils.hpp"
+#include "Walnut/Application.h"
 #include <filesystem>
 #include <imgui.h>
 
@@ -13,7 +14,12 @@ namespace osb
 
 	MainLayer::~MainLayer()
 	{
+		for (auto& s : _soundboardWindows)
+		{
+			delete s;
+		}
 
+		_soundboardWindows.clear();
 	}
 
 	void MainLayer::OnAttach()
@@ -21,7 +27,27 @@ namespace osb
 		// Import the assorted audio icons to be used throughout the GUI...
 		std::filesystem::path p = "fonts\\fontaudio.ttf";
 		std::filesystem::path absolute_path = std::filesystem::absolute(p);
-		Utils::AddAudioIcons(absolute_path.string().data());
+		utils::AddAudioIcons(absolute_path.string().data());
+
+		MainLayer* mainLayer = this;
+
+		Walnut::Application* app = &(Walnut::Application::Get());
+
+		app->SetMenubarCallback([app, mainLayer]()
+			{
+				if (ImGui::BeginMenu("File"))
+				{
+					if (ImGui::MenuItem("Create New Soundboard Window"))
+					{
+						mainLayer->CreateNewSoundboardWindow();
+					}
+					if (ImGui::MenuItem("Exit"))
+					{
+						app->Close();
+					}
+					ImGui::EndMenu();
+				}
+			});
 	}
 
 	void MainLayer::OnDetach()
@@ -29,12 +55,32 @@ namespace osb
 
 	}
 
-	void MainLayer::OnUIRender()
+	void MainLayer::OnUpdate(float ts)
 	{
-		ShowUnicodeFontDemo();
+		Layer::OnUpdate(ts);
+
+
 	}
 
-	void MainLayer::ShowUnicodeFontDemo()
+	void MainLayer::OnUIRender()
+	{
+		_renderSoundboardWindows();
+	}
+
+	void MainLayer::CreateNewSoundboardWindow()
+	{
+		_soundboardWindows.push_back(new SoundboardWindow());
+	}
+
+	void MainLayer::_renderSoundboardWindows()
+	{
+		for (auto& s : _soundboardWindows)
+		{
+			s->Render();
+		}
+	}
+
+	void MainLayer::_showUnicodeFontDemo()
 	{
 		ImGui::Text(ICON_FAD_ADR);
 		ImGui::Text(ICON_FAD_ADSR);

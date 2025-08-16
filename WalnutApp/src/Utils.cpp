@@ -6,7 +6,7 @@
 
 namespace osb
 {
-	namespace Utils
+	namespace utils
 	{
 		void AddAudioIcons(char* path)
 		{ // Modified from the solution provided on the GitHub issue I opened three years ago: https://github.com/StudioCherno/Walnut/issues/14
