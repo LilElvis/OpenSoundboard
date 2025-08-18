@@ -29,6 +29,7 @@ namespace osb
 		std::filesystem::path absolute_path = std::filesystem::absolute(p);
 		utils::AddAudioIcons(absolute_path.string().data());
 
+		// Get a reference to the application to create a callback for the top level menu bar so that it can invoke functions from this layer...
 		MainLayer* mainLayer = this;
 
 		Walnut::Application* app = &(Walnut::Application::Get());
@@ -39,7 +40,7 @@ namespace osb
 				{
 					if (ImGui::MenuItem("Create New Soundboard Window"))
 					{
-						mainLayer->CreateNewSoundboardWindow();
+						mainLayer->_createNewSoundboardWindow();
 					}
 					if (ImGui::MenuItem("Exit"))
 					{
@@ -67,16 +68,16 @@ namespace osb
 		_renderSoundboardWindows();
 	}
 
-	void MainLayer::CreateNewSoundboardWindow()
+	void MainLayer::_createNewSoundboardWindow()
 	{
 		_soundboardWindows.push_back(new SoundboardWindow());
 	}
 
 	void MainLayer::_renderSoundboardWindows()
 	{
-		for (auto& s : _soundboardWindows)
+		for (auto& sbw : _soundboardWindows)
 		{
-			s->Render();
+			sbw->Render();
 		}
 	}
 

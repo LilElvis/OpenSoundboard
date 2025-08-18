@@ -1,3 +1,4 @@
+#pragma once
 #include "SoundboardData.hpp"
 
 namespace osb

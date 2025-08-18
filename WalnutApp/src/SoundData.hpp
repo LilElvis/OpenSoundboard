@@ -1,15 +1,13 @@
 #pragma once
-#include "SoundData.hpp"
 #include <nlohmann/json.hpp>
-#include <vector>
 
 namespace osb
 {
-	class SoundboardData
+	class SoundData
 	{
 	public:
-		SoundboardData();
-		~SoundboardData();
+		SoundData();
+		~SoundData();
 
 		bool FromJSON(nlohmann::json data);
 		nlohmann::json ToJSON();
@@ -22,7 +20,10 @@ namespace osb
 	private:
 		static int s_instanceCount;
 		int _id = 0;
-		std::string _label = "New Soundboard";
-		std::vector<SoundData> _soundData;
+		std::string _label = "New Sound";
+		std::string _filePath = "Undefined path...";
+		float _volumeA = 0.5f;
+		float _volumeB = 0.5f;
+		//TODO: Member for preferred hotkey...
 	};
 }

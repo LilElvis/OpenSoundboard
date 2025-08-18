@@ -15,7 +15,7 @@ namespace osb
 
 	}
 
-	bool SoundboardData::FromJSON()
+	bool SoundboardData::FromJSON(nlohmann::json data)
 	{
 		throw std::logic_error("Function not yet implemented!");
 	}
