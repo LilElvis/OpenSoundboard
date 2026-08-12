@@ -39,4 +39,15 @@ namespace osb
 	{
 		_label = label;
 	}
+
+	void SoundboardData::AddSound(SoundData soundData)
+	{
+		_soundData.push_back(soundData);
+	}
+
+	void SoundboardData::RemoveSound(SoundData soundData)
+	{
+		const int id = soundData.GetId();
+		_soundData.erase(std::remove_if(std::begin(_soundData), std::end(_soundData), [id](SoundData& s) { return (s.GetId() == id); }));
+	}
 }

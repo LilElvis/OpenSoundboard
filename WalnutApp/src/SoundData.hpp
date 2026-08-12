@@ -14,8 +14,12 @@ namespace osb
 
 		int GetId();
 		std::string GetLabel();
+		float GetVolumeA();
+		float GetVolumeB();
 
 		void SetLabel(std::string label);
+		void SetVolumeA(float volume);
+		void SetVolumeB(float volume);
 
 	private:
 		static int s_instanceCount;

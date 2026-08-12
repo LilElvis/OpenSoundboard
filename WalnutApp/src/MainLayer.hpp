@@ -1,4 +1,5 @@
 #pragma once
+#include "Modal.hpp"
 #include "SoundboardWindow.hpp"
 #include "Walnut/Layer.h"
 #include <vector>
@@ -18,9 +19,12 @@ namespace osb
 		virtual void OnUIRender() override;
 
 	private:
+		std::vector<Modal*> _modalWindows;
 		std::vector<SoundboardWindow*> _soundboardWindows;
 
-		void _createNewSoundboardWindow();
+		void _openCreateNewSoundBoardModal();
+		void _createSoundboardWindow();
+		void _renderNextModalWindow();
 		void _renderSoundboardWindows();
 		// Displays all the audio icons to ensure they're rendering correctly.
 		void _showUnicodeFontDemo();

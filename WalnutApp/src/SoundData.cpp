@@ -6,8 +6,7 @@ namespace osb
 
 	SoundData::SoundData()
 	{
-		_id = s_instanceCount;
-		s_instanceCount++;
+		_id = SoundData::s_instanceCount++;
 	}
 
 	SoundData::~SoundData()
@@ -36,8 +35,28 @@ namespace osb
 		return _label;
 	}
 
+	float SoundData::GetVolumeA()
+	{
+		return _volumeA;
+	}
+
+	float SoundData::GetVolumeB()
+	{
+		return _volumeB;
+	}
+
 	void SoundData::SetLabel(std::string label)
 	{
 		_label = label;
+	}
+
+	void SoundData::SetVolumeA(float volume)
+	{
+		_volumeA = volume;
+	}
+
+	void SoundData::SetVolumeB(float volume)
+	{
+		_volumeB = volume;
 	}
 }

@@ -19,6 +19,9 @@ namespace osb
 
 		void SetLabel(std::string label);
 
+		void AddSound(SoundData soundData);
+		void RemoveSound(SoundData soundData);
+
 	private:
 		static int s_instanceCount;
 		int _id = 0;

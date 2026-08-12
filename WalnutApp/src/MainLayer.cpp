@@ -40,7 +40,7 @@ namespace osb
 				{
 					if (ImGui::MenuItem("Create New Soundboard Window"))
 					{
-						mainLayer->_createNewSoundboardWindow();
+						mainLayer->_openCreateNewSoundBoardModal();
 					}
 					if (ImGui::MenuItem("Exit"))
 					{
@@ -65,12 +65,28 @@ namespace osb
 
 	void MainLayer::OnUIRender()
 	{
+		_renderNextModalWindow();
 		_renderSoundboardWindows();
 	}
 
-	void MainLayer::_createNewSoundboardWindow()
+	void MainLayer::_openCreateNewSoundBoardModal()
 	{
-		_soundboardWindows.push_back(new SoundboardWindow());
+		_modalWindows.push_back(new Modal());
+	}
+
+	void MainLayer::_createSoundboardWindow()
+	{
+		SoundboardWindow* window = new SoundboardWindow();
+
+		_soundboardWindows.push_back(window);
+	}
+
+	void MainLayer::_renderNextModalWindow()
+	{
+		if (_modalWindows.size())
+		{
+			_modalWindows.front()->Render();
+		}
 	}
 
 	void MainLayer::_renderSoundboardWindows()
