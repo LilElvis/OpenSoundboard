@@ -10,6 +10,12 @@ namespace osb
 	MainLayer::MainLayer()
 	{
 		_createNewSoundboardModal = new Modal();
+		_createNewSoundboardModal->SetLabel("Create New Soundboard");
+		_createNewSoundboardModal->SetMessage("Create a new soundboard in a new window?");
+		_createNewSoundboardModal->SetCloseButtonLabel("Cancel");
+		_createNewSoundboardModal->SetActionButtonLabel("Accept");
+		std::function<void(void)> createNewSoundboardCallback = [this]() { this->_createSoundboardWindow(); ImGui::CloseCurrentPopup(); };
+		_createNewSoundboardModal->SetOnActionButtonClicked(createNewSoundboardCallback);
 	}
 
 	MainLayer::~MainLayer()

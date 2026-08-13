@@ -42,6 +42,31 @@ namespace osb
 		}
 	}
 
+	void Modal::SetLabel(std::string label)
+	{
+		_label = label;
+	}
+
+	void Modal::SetMessage(std::string message)
+	{
+		_message = message;
+	}
+
+	void Modal::SetCloseButtonLabel(std::string label)
+	{
+		_closeButtonLabel = label;
+	}
+
+	void Modal::SetActionButtonLabel(std::string label)
+	{
+		_actionButtonLabel = label;
+	}
+
+	void Modal::SetOnActionButtonClicked(std::function<void()> function)
+	{
+		_onActionButtonClicked = function;
+	}
+
 	void Modal::_renderBody()
 	{
 		ImGui::Text(_message.c_str());

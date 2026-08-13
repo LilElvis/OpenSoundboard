@@ -3,6 +3,7 @@
 #include "SoundboardWindow.hpp"
 #include "Walnut/Layer.h"
 #include <vector>
+#include <functional>
 
 namespace osb
 {
