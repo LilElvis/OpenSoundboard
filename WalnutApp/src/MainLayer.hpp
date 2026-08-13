@@ -19,12 +19,12 @@ namespace osb
 		virtual void OnUIRender() override;
 
 	private:
-		std::vector<Modal*> _modalWindows;
+		Modal* _createNewSoundboardModal;
 		std::vector<SoundboardWindow*> _soundboardWindows;
 
 		void _openCreateNewSoundBoardModal();
 		void _createSoundboardWindow();
-		void _renderNextModalWindow();
+		void _renderModalWindows();
 		void _renderSoundboardWindows();
 		// Displays all the audio icons to ensure they're rendering correctly.
 		void _showUnicodeFontDemo();

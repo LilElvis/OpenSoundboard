@@ -9,11 +9,13 @@ namespace osb
 {
 	MainLayer::MainLayer()
 	{
-
+		_createNewSoundboardModal = new Modal();
 	}
 
 	MainLayer::~MainLayer()
 	{
+		delete _createNewSoundboardModal;
+
 		for (auto& s : _soundboardWindows)
 		{
 			delete s;
@@ -65,13 +67,13 @@ namespace osb
 
 	void MainLayer::OnUIRender()
 	{
-		_renderNextModalWindow();
 		_renderSoundboardWindows();
+		_renderModalWindows();
 	}
 
 	void MainLayer::_openCreateNewSoundBoardModal()
 	{
-		_modalWindows.push_back(new Modal());
+		_createNewSoundboardModal->Open();
 	}
 
 	void MainLayer::_createSoundboardWindow()
@@ -81,12 +83,9 @@ namespace osb
 		_soundboardWindows.push_back(window);
 	}
 
-	void MainLayer::_renderNextModalWindow()
+	void MainLayer::_renderModalWindows()
 	{
-		if (_modalWindows.size())
-		{
-			_modalWindows.front()->Render();
-		}
+		_createNewSoundboardModal->Render();
 	}
 
 	void MainLayer::_renderSoundboardWindows()

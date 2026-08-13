@@ -5,7 +5,7 @@ namespace osb
 {
 	Modal::Modal()
 	{
-
+		
 	}
 
 	Modal::~Modal()
@@ -13,8 +13,20 @@ namespace osb
 
 	}
 
+	void Modal::Open()
+	{
+		_open = true;
+	}
+
 	void Modal::Render()
 	{
+		if (_open)
+		{
+			ImGui::OpenPopup(_label.c_str());
+			_open = false;
+		}
+
+
 		if (ImGui::BeginPopupModal(_label.c_str(), nullptr, ImGuiWindowFlags_AlwaysAutoResize))
 		{
 			_renderBody();
@@ -32,6 +44,6 @@ namespace osb
 
 	void Modal::_renderBody()
 	{
-
+		ImGui::Text(_message.c_str());
 	}
 }
